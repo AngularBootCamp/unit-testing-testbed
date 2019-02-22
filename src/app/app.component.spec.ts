@@ -1,8 +1,9 @@
 import { TestBed } from '@angular/core/testing';
-import SpyObj = jasmine.SpyObj;
 
 import { AppComponent } from './app.component';
 import { HelloService } from './hello.service';
+
+import SpyObj = jasmine.SpyObj;
 
 /**
  * Testing a component class without the DOM (same as a service test)

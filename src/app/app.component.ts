@@ -7,7 +7,7 @@ import { HelloService } from './hello.service';
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-  greeting: string;
+  greeting: string = '';
 
   constructor(private hello: HelloService) {
   }

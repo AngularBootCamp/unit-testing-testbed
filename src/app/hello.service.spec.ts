@@ -1,8 +1,9 @@
 import { TestBed } from '@angular/core/testing';
-import SpyObj = jasmine.SpyObj;
 
 import { HelloService } from './hello.service';
 import { UserService } from './user.service';
+
+import SpyObj = jasmine.SpyObj;
 
 describe('HelloUserService', () => {
   let helloUserService: HelloService;
@@ -12,7 +13,6 @@ describe('HelloUserService', () => {
     // mock dependencies
     TestBed.configureTestingModule({
       providers: [
-        HelloService,
         {
           provide: UserService,
           useValue: jasmine.createSpyObj<UserService>('UserService', ['currentUser'])
