@@ -15,7 +15,9 @@ describe('HelloUserService', () => {
       providers: [
         {
           provide: UserService,
-          useValue: jasmine.createSpyObj<UserService>('UserService', ['currentUser'])
+          useValue: jasmine.createSpyObj<UserService>('UserService', [
+            'currentUser'
+          ])
         }
       ]
     });
@@ -35,7 +37,9 @@ describe('HelloUserService', () => {
     userService.currentUser.and.returnValue(user);
 
     // execute test method and assert result
-    expect(helloUserService.calculateHello('Hello')).toBe('Hello, Rachel Hardin!');
+    expect(helloUserService.calculateHello('Hello')).toBe(
+      'Hello, Rachel Hardin!'
+    );
 
     // verify mocks
     expect(userService.currentUser).toHaveBeenCalledTimes(1);

@@ -7,10 +7,9 @@ import { HelloService } from './hello.service';
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-  greeting: string = '';
+  greeting = '';
 
-  constructor(private hello: HelloService) {
-  }
+  constructor(private hello: HelloService) {}
 
   calculateGreeting() {
     this.greeting = this.hello.calculateHello('Hello');

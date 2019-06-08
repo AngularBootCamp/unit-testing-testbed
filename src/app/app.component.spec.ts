@@ -9,7 +9,6 @@ import SpyObj = jasmine.SpyObj;
  * Testing a component class without the DOM (same as a service test)
  */
 describe('App Component', () => {
-
   let appComponent: AppComponent;
   let helloService: SpyObj<HelloService>;
 
@@ -19,7 +18,10 @@ describe('App Component', () => {
         AppComponent,
         {
           provide: HelloService,
-          useValue: jasmine.createSpyObj<HelloService>('HelloService', ['calculateHello'])
+          useValue: jasmine.createSpyObj<HelloService>(
+            'HelloService',
+            ['calculateHello']
+          )
         }
       ]
     });

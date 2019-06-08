@@ -6,13 +6,10 @@ import { UserService } from './user.service';
   providedIn: 'root'
 })
 export class HelloService {
-
-  constructor(private userService: UserService) {
-  }
+  constructor(private userService: UserService) {}
 
   calculateHello(greeting: string): string {
     const user = this.userService.currentUser();
     return `${greeting}, ${user.firstName} ${user.lastName}!`;
   }
-
 }
