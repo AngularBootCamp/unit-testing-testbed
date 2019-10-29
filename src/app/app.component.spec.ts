@@ -31,7 +31,7 @@ describe('App Component', () => {
   });
 
   it('should have no greeting after construction', () => {
-    expect(appComponent.greeting).toBeUndefined();
+    expect(appComponent.greeting).toEqual('');
     expect(helloService.calculateHello).not.toHaveBeenCalled();
   });
 
