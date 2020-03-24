@@ -26,8 +26,10 @@ describe('App Component', () => {
       ]
     });
 
-    appComponent = TestBed.get(AppComponent);
-    helloService = TestBed.get(HelloService);
+    appComponent = TestBed.inject(AppComponent);
+    helloService = TestBed.inject(HelloService) as SpyObj<
+      HelloService
+    >;
   });
 
   it('should have no greeting after construction', () => {

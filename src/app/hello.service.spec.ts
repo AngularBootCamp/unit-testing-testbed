@@ -23,8 +23,8 @@ describe('HelloUserService', () => {
     });
 
     // Always retrieve services from TestBed
-    helloUserService = TestBed.get(HelloService);
-    userService = TestBed.get(UserService);
+    helloUserService = TestBed.inject(HelloService);
+    userService = TestBed.inject(UserService) as SpyObj<UserService>;
   });
 
   it('should calculate a greeting', () => {
