@@ -1,35 +1,30 @@
 import { TestBed } from '@angular/core/testing';
+import { createSpyObj } from 'jest-createspyobj';
 
 import { AppComponent } from './app.component';
 import { HelloService } from './hello.service';
-
-import SpyObj = jasmine.SpyObj;
 
 /**
  * Testing a component class without the DOM (same as a service test)
  */
 describe('App Component', () => {
   let appComponent: AppComponent;
-  let helloService: SpyObj<HelloService>;
+  let helloService: jest.Mocked<HelloService>;
 
   beforeEach(() => {
+    helloService = createSpyObj(HelloService);
+
     TestBed.configureTestingModule({
       providers: [
         AppComponent,
         {
           provide: HelloService,
-          useValue: jasmine.createSpyObj<HelloService>(
-            'HelloService',
-            ['calculateHello']
-          )
+          useValue: helloService
         }
       ]
     });
 
     appComponent = TestBed.inject(AppComponent);
-    helloService = TestBed.inject(HelloService) as SpyObj<
-      HelloService
-    >;
   });
 
   it('should have no greeting after construction', () => {
@@ -39,7 +34,7 @@ describe('App Component', () => {
 
   it('should calculate greeting', () => {
     // setup and preconditions
-    helloService.calculateHello.and.returnValue('Hello, Joe!');
+    helloService.calculateHello.mockReturnValue('Hello, Joe!');
 
     // call test method
     appComponent.calculateGreeting();

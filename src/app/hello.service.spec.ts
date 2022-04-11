@@ -1,30 +1,28 @@
 import { TestBed } from '@angular/core/testing';
+import { createSpyObj } from 'jest-createspyobj';
 
 import { HelloService } from './hello.service';
 import { UserService } from './user.service';
 
-import SpyObj = jasmine.SpyObj;
-
 describe('HelloUserService', () => {
   let helloUserService: HelloService;
-  let userService: SpyObj<UserService>;
+  let userService: jest.Mocked<UserService>;
 
   beforeEach(() => {
+    userService = createSpyObj(UserService);
+
     // mock dependencies
     TestBed.configureTestingModule({
       providers: [
         {
           provide: UserService,
-          useValue: jasmine.createSpyObj<UserService>('UserService', [
-            'currentUser'
-          ])
+          useValue: userService
         }
       ]
     });
 
     // Always retrieve services from TestBed
     helloUserService = TestBed.inject(HelloService);
-    userService = TestBed.inject(UserService) as SpyObj<UserService>;
   });
 
   it('should calculate a greeting', () => {
@@ -34,7 +32,7 @@ describe('HelloUserService', () => {
       firstName: 'Rachel',
       lastName: 'Hardin'
     };
-    userService.currentUser.and.returnValue(user);
+    userService.currentUser.mockReturnValue(user);
 
     // execute test method and assert result
     expect(helloUserService.calculateHello('Hello')).toBe(
