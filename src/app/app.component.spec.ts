@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { createSpyObj } from 'jest-createspyobj';
+import { Spy, createSpyFromClass } from 'jest-auto-spies';
 
 import { AppComponent } from './app.component';
 import { HelloService } from './hello.service';
@@ -9,10 +9,10 @@ import { HelloService } from './hello.service';
  */
 describe('App Component', () => {
   let appComponent: AppComponent;
-  let helloService: jest.Mocked<HelloService>;
+  let helloService: Spy<HelloService>;
 
   beforeEach(() => {
-    helloService = createSpyObj(HelloService);
+    helloService = createSpyFromClass(HelloService);
 
     TestBed.configureTestingModule({
       providers: [
